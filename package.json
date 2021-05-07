@@ -7,6 +7,8 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "5.15.3",
     "@popperjs/core": "2.9.1",
+    "@stripe/react-stripe-js": "^1.4.0",
+    "@stripe/stripe-js": "^1.14.0",
     "@tailwindcss/forms": "0.2.1",
     "autoprefixer": "10.2.5",
     "axios": "^0.21.1",
@@ -28,13 +30,21 @@
     "redux-thunk": "^2.3.0",
     "tailwindcss": "2.0.4"
   },
+  "devDependencies": {
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "prettier": "^2.1.2"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build && gulp licenses",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm run build:tailwind && npm start",
-    "build:tailwind": "tailwind build src/assets/styles/index.css -o src/assets/styles/tailwind.css"
+    "build:tailwind": "tailwind build src/assets/styles/index.css -o src/assets/styles/tailwind.css",
+    "lint:fix": "eslint src/**/*.js src/**/*.jsx --fix",
+    "lint": "eslint src/**/*.js src/**/*.jsx",
+    "prettify": "prettier src/**/*.js --write"
   },
   "eslintConfig": {
     "extends": "react-app"

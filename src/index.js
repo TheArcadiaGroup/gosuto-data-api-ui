@@ -1,30 +1,27 @@
-
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { createBrowserHistory } from 'history'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'connected-react-router'
-import "@fortawesome/fontawesome-free/css/all.min.css";
-import "assets/styles/tailwind.css";
+import '@fortawesome/fontawesome-free/css/all.min.css'
+import 'assets/styles/tailwind.css'
 // Utils
 import jwt_decode from 'jwt-decode'
 import setAuthToken from './utils/setAuthToken'
 
 import { setUser, logout } from './store/actions/user'
 
-
 import App from './App'
 import configureStore from './store/configureStore'
 import registerServiceWorker from './registerServiceWorker'
-
 
 const history = createBrowserHistory()
 const store = configureStore(history)
 
 // Check for token to keep user logged in
-if (localStorage.jwtTokenWesloop) {
+if (localStorage.jwtTokenGosutu) {
   // Set auth token header auth
-  const token = JSON.parse(localStorage.jwtTokenWesloop)
+  const token = JSON.parse(localStorage.jwtTokenGosutu)
   setAuthToken(token)
   // Decode token and get user info and exp
   const decoded = jwt_decode(token)

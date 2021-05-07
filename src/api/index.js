@@ -19,6 +19,5 @@ export {
   getConfirmation,
   resendConfirmation,
   getUser,
-  resetRegister,
-
+  resetRegister
 }

@@ -1,10 +1,13 @@
-import React from "react";
-
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { getPack } from '../../api/pack'
 // components
 
-import CardStats from "components/Cards/CardStats.js";
+import CardStats from 'components/Cards/CardStats.js'
 
 export default function HeaderStats() {
+  const { isAuth, user } = useSelector((state) => state.user)
+
   return (
     <>
       {/* Header */}
@@ -15,8 +18,8 @@ export default function HeaderStats() {
             <div className="flex flex-wrap">
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="TRAFFIC"
-                  statTitle="350,897"
+                  statSubtitle="PLAN"
+                  statTitle={user.pack.name}
                   statArrow="up"
                   statPercent="3.48"
                   statPercentColor="text-emerald-500"
@@ -27,8 +30,8 @@ export default function HeaderStats() {
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="NEW USERS"
-                  statTitle="2,356"
+                  statSubtitle="Project Numbers"
+                  statTitle={`${user.pack.nbProjects}`}
                   statArrow="down"
                   statPercent="3.48"
                   statPercentColor="text-red-500"
@@ -39,8 +42,8 @@ export default function HeaderStats() {
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="SALES"
-                  statTitle="924"
+                  statSubtitle="Request Numbers"
+                  statTitle={`${user.pack.nbRequests}`}
                   statArrow="down"
                   statPercent="1.10"
                   statPercentColor="text-orange-500"
@@ -66,5 +69,5 @@ export default function HeaderStats() {
         </div>
       </div>
     </>
-  );
+  )
 }

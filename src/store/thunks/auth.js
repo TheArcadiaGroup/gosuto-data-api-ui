@@ -18,7 +18,7 @@ export const attemptLogin = (user) => async (dispatch) => {
   await postLogin(user)
     .then((res) => {
       const { user, token } = res.data
-      localStorage.setItem('jwtTokenWesloop', JSON.stringify(token))
+      localStorage.setItem('jwtTokenGosutu', JSON.stringify(token))
       // Set token to Auth header
       setAuthToken(token)
       ///const decoded = jwt_decode(token)
@@ -30,7 +30,7 @@ export const attemptLogin = (user) => async (dispatch) => {
 }
 
 export const attemptSocialLogin = (token) => async (dispatch) => {
-  localStorage.setItem('jwtTokenWesloop', JSON.stringify(token))
+  localStorage.setItem('jwtTokenGosutu', JSON.stringify(token))
   setAuthToken(token)
   const decoded = jwt_decode(token)
   dispatch(login(decoded.user))
@@ -51,7 +51,7 @@ export const attemptResetPassword = (password, token) => async (dispatch) => {
 export const attemptLogout = () => async (dispatch) =>
   await postLogout()
     .then(() => {
-      localStorage.removeItem('jwtTokenWesloop')
+      localStorage.removeItem('jwtTokenGosutu')
       // Remove auth header for future requests
       setAuthToken(false)
       dispatch(logout())

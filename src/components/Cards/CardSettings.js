@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 // components
 
@@ -180,5 +180,5 @@ export default function CardSettings() {
         </div>
       </div>
     </>
-  );
+  )
 }

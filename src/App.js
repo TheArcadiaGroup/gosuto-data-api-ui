@@ -2,18 +2,18 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { attemptGetUser } from './store/thunks/user'
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 
 // layouts
 
-import Admin from "layouts/Admin.js";
-import Auth from "layouts/Auth.js";
+import Admin from 'layouts/Admin.js'
+import Auth from 'layouts/Auth.js'
 
 // views without layouts
 
-import Landing from "views/Landing.js";
-import Profile from "views/Profile.js";
-import Index from "views/Index.js";
+import Landing from 'views/Landing.js'
+import Profile from 'views/Profile.js'
+import Index from 'views/Index.js'
 
 function MainApp() {
   const [loading, setLoading] = useState(true)
@@ -30,23 +30,20 @@ function MainApp() {
     'Loading ...'
   ) : (
     <BrowserRouter>
-    <Switch>
-      {/* add routes with layouts */}
-      <Route path="/admin" component={Admin} />
-      <Route path="/auth" component={Auth} />
-      {/* add routes without layouts */}
-      <Route path="/landing" exact component={Landing} />
-      <Route path="/profile" exact component={Profile} />
-      <Route path="/" exact component={Index} />
-      {/* add redirect for first page */}
-      <Redirect from="*" to="/" />
-    </Switch>
-  </BrowserRouter>
-
+      <Switch>
+        {/* add routes with layouts */}
+        <Route path="/admin" component={Admin} />
+        <Route path="/auth" component={Auth} />
+        {/* add routes without layouts */}
+        <Route path="/landing" exact component={Landing} />
+        <Route path="/profile" exact component={Profile} />
+        <Route path="/" exact component={Index} />
+        {/* add redirect for first page */}
+        <Redirect from="*" to="/" />
+      </Switch>
+    </BrowserRouter>
   )
 }
-
-
 
 function App() {
   return <MainApp />

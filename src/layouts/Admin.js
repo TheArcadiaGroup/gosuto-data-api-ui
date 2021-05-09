@@ -20,7 +20,7 @@ export default function Admin() {
   return (
     <>
       <Sidebar />
-      <div className="relative md:ml-64 bg-blueGray-100">
+      <div className="relative md:ml-64 bg-blueGray-100" style={{ height: '100vh' }}>
         <AdminNavbar />
         {/* Header */}
         <HeaderStats />
@@ -33,7 +33,7 @@ export default function Admin() {
             <ProtectedRoute path="/admin/project/create" exact component={Create} />
             <Redirect from="/admin" to="/admin/dashboard" />
           </Switch>
-          <FooterAdmin />
+          {/* <FooterAdmin /> */}
         </div>
       </div>
     </>

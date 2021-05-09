@@ -70,6 +70,16 @@ export default function CardTable({ color }) {
                 >
                   API Key
                 </th>
+                <th
+                  className={
+                    'px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left ' +
+                    (color === 'light'
+                      ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
+                      : 'bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700')
+                  }
+                >
+                  Endpoint
+                </th>
 
                 <th
                   className={
@@ -85,7 +95,7 @@ export default function CardTable({ color }) {
               {projects.map((project) => {
                 return (
                   <tr>
-                    <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
+                    <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-left flex items-center">
                       <span
                         className={
                           'ml-3 font-bold ' +
@@ -95,11 +105,13 @@ export default function CardTable({ color }) {
                         {project.name}
                       </span>
                     </th>
-                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
                       {project.apiKey}
                     </td>
-
-                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                      https://mainnet.gosuto.io/v1/{project.apiKey}
+                    </td>
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-right">
                       <TableDropdown />
                     </td>
                   </tr>

@@ -21,11 +21,14 @@ export default function Admin() {
   return (
     <>
       <Sidebar />
-      <div className="relative md:ml-64 bg-blueGray-100" style={{ height: '100vh' }}>
+      <div
+        className="relative md:ml-64 bg-blueGray-100"
+        style={{ minHeight: '100vh', position: 'relative' }}
+      >
         <AdminNavbar />
         {/* Header */}
         <HeaderStats />
-        <div className="px-4 md:px-10 mx-auto w-full -m-24">
+        <div className="px-4 md:px-10 mx-auto w-full -m-24 pb-20">
           <Switch>
             <ProtectedRoute path="/admin/dashboard" exact component={Dashboard} />
             <ProtectedRoute path="/admin/settings" exact component={Settings} />
@@ -35,7 +38,7 @@ export default function Admin() {
             <ProtectedRoute path="/admin/project/edit/:id" exact component={Edit} />
             <Redirect from="/admin" to="/admin/dashboard" />
           </Switch>
-          {/* <FooterAdmin /> */}
+          <FooterAdmin />
         </div>
       </div>
     </>

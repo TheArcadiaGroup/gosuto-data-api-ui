@@ -146,10 +146,10 @@ export default function Footer() {
               <div className="text-sm text-blueGray-500 font-semibold py-1">
                 Copyright © {new Date().getFullYear()} GOSUTU by{' '}
                 <a
-                  href="https://github.com/seifeddine-brahem"
+                  href="https://arcadiamgroup.com/"
                   className="text-blueGray-500 hover:text-blueGray-800"
                 >
-                  ELBRH
+                  Arcadia Media Group
                 </a>
                 .
               </div>

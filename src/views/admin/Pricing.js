@@ -20,13 +20,13 @@ export default function Pricing() {
     <>
       <div
         className="  h-full py-16 antialiased bg-primary-very-light font-sans"
-        style={{ marginTop: 150 }}
+        style={{}}
       >
         <div
           id="modal"
           class="flex flex-col  items-center lg:justify-center w-full w-full lg:px-10 py-12"
         ></div>
-        <div className="flex flex-col items-center mb-12 text-white">
+        <div className="flex flex-col items-center text-white">
           <h2 className="text-3xl font-bold text-black">Our Pricing</h2>
         </div>
 

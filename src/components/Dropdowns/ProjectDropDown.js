@@ -50,6 +50,7 @@ const ProjectDropDown = (props) => {
           e.preventDefault()
           dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover()
         }}
+        style={{ cursor: 'pointer' }}
       >
         <i className="fas fa-ellipsis-v"></i>
       </div>

@@ -26,10 +26,12 @@ export default function ConfirmPage() {
           <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0">
             <div className="text-center mt-12">
               <i className="fa fa-check-circle"></i>
-              <h2 className="margin-top-30">Click here to confirm your email</h2>
 
-              <button onClick={doSubmit} classNameName="button">
-                Confirmation
+              <button
+                onClick={doSubmit}
+                className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+              >
+                Click here to confirm your email
               </button>
               {serverError && <span style={{ color: 'red' }}>{serverError}</span>}
             </div>

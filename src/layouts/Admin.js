@@ -15,6 +15,7 @@ import Settings from 'views/admin/Settings.js'
 import Pricing from 'views/admin/Pricing.js'
 import Tables from 'views/admin/Tables'
 import Create from 'views/admin/Project/Create'
+import Edit from 'views/admin/Project/Edit'
 
 export default function Admin() {
   return (
@@ -31,6 +32,7 @@ export default function Admin() {
             <ProtectedRoute path="/admin/pricing" exact component={Pricing} />
             <ProtectedRoute path="/admin/projects" exact component={Tables} />
             <ProtectedRoute path="/admin/project/create" exact component={Create} />
+            <ProtectedRoute path="/admin/project/edit/:id" exact component={Edit} />
             <Redirect from="/admin" to="/admin/dashboard" />
           </Switch>
           {/* <FooterAdmin /> */}

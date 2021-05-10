@@ -37,15 +37,15 @@ export const attemptSocialLogin = (token) => async (dispatch) => {
 }
 
 export const attemptSendResetPasswordLink = (email) => async (dispatch) => {
-  await sendResetPasswordLink(email).catch(dispatch(push('/login/forgot')))
+  await sendResetPasswordLink(email).catch(dispatch(push('/auh/login/forgot')))
 }
 
 export const attemptResetPassword = (password, token) => async (dispatch) => {
   await resetPassword(password, token)
     .then(() => {
-      dispatch(push('/login'))
+      dispatch(push('/auh/login'))
     })
-    .catch(dispatch(push(`/login/reset/${token}`)))
+    .catch(dispatch(push(`/auh/login/reset/${token}`)))
 }
 
 export const attemptLogout = () => async (dispatch) =>
@@ -55,22 +55,22 @@ export const attemptLogout = () => async (dispatch) =>
       // Remove auth header for future requests
       setAuthToken(false)
       dispatch(logout())
-      dispatch(push('/login'))
+      dispatch(push('/auh/login'))
     })
-    .catch(dispatch(push('/login')))
+    .catch(dispatch(push('/auh/login')))
 
 export const attemptRegister = (newUser) => async (dispatch) => {
-  await postRegister(newUser).catch(dispatch(push('/register')))
+  await postRegister(newUser).catch(dispatch(push('/auh/register')))
 }
 
 export const attemptGetConfirmation = (token) => async (dispatch) =>
   await getConfirmation(token).then(() => {
-    dispatch(push('/login'))
+    dispatch(push('/auh/login'))
   })
 
 export const attemptResendConfirmation = (email) => async (dispatch) =>
-  await resendConfirmation(email).catch(dispatch(push('/register')))
+  await resendConfirmation(email).catch(dispatch(push('/auh/register')))
 
 export const attemptResetRegister = (email) => async (dispatch) => {
-  await resetRegister(email).catch(dispatch(push('/register')))
+  await resetRegister(email).catch(dispatch(push('/auh/register')))
 }

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { getProjects } from '../../api/project'
 // components
 
-import TableDropdown from 'components/Dropdowns/TableDropdown.js'
+import ProjectDropDown from 'components/Dropdowns/ProjectDropDown.js'
 
 export default function CardTable({ color }) {
   const [projects, setProjects] = useState([])
@@ -112,7 +112,7 @@ export default function CardTable({ color }) {
                       https://mainnet.gosuto.io/v1/{project.apiKey}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-right">
-                      <TableDropdown />
+                      <ProjectDropDown project={project} />
                     </td>
                   </tr>
                 )

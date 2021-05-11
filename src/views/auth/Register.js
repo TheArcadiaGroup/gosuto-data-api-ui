@@ -18,7 +18,6 @@ export default function Register() {
   const { register, handleSubmit } = useForm()
 
   const onSubmit = (values) => {
-    // alert(JSON.stringify(values))
     dispatch(attemptRegister(values))
       .then(() => {
         setEmail(values.email)

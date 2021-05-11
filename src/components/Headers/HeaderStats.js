@@ -4,10 +4,25 @@ import { getPack } from '../../api/pack'
 // components
 
 import CardStats from 'components/Cards/CardStats.js'
+import { getProjects } from 'api/project'
+import { getAllToday } from 'api/request'
 
 export default function HeaderStats() {
   const { isAuth, user } = useSelector((state) => state.user)
-
+  const [projects, setProjects] = useState(0)
+  const [nbRequests, setNbRequests] = useState(0)
+  useEffect(() => {
+    async function loadProjects() {
+      const res = await getProjects()
+      setProjects(res.data.length)
+    }
+    loadProjects()
+    async function loadRequests() {
+      const res = await getAllToday()
+      setNbRequests(res.data.length)
+    }
+    loadRequests()
+  }, [])
   return (
     <>
       {/* Header */}
@@ -18,7 +33,7 @@ export default function HeaderStats() {
             <div className="flex flex-wrap">
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="PLAN"
+                  statSubtitle="CURRENT PLAN"
                   statTitle={user.pack.name}
                   statArrow="up"
                   statPercent="3.48"
@@ -30,8 +45,8 @@ export default function HeaderStats() {
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="Project Numbers"
-                  statTitle={`${user.pack.nbProjects}`}
+                  statSubtitle="Total Projects"
+                  statTitle={`${projects} / ${user.pack.nbProjects}`}
                   statArrow="down"
                   statPercent="3.48"
                   statPercentColor="text-red-500"
@@ -42,8 +57,8 @@ export default function HeaderStats() {
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="Request Numbers"
-                  statTitle={`${user.pack.nbRequests}`}
+                  statSubtitle="Requests Today"
+                  statTitle={`${nbRequests} / ${user.pack.nbRequests}`}
                   statArrow="down"
                   statPercent="1.10"
                   statPercentColor="text-orange-500"

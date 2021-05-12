@@ -20,7 +20,7 @@ export default function Edit() {
   const onSubmit = (values) => {
     editProject(values, id)
       .then(() => {
-        window.location.replace('/admin/projects')
+        window.location.replace('/dashboard/projects')
       })
       .catch((error) => {
         if (error.response) {

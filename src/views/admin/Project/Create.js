@@ -10,7 +10,7 @@ export default function Create() {
   const onSubmit = (values) => {
     postProject(values)
       .then(() => {
-        window.location.replace('/admin/projects')
+        window.location.replace('/dashboard/projects')
       })
       .catch((error) => {
         if (error.response) {

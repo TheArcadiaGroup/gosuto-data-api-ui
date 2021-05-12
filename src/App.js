@@ -25,14 +25,13 @@ function MainApp() {
       .catch(() => setLoading(false))
     // eslint-disable-next-line
   }, [])
-
   return loading ? (
-    'Loading ...'
+    <img src={'https://i.pinimg.com/originals/c3/34/9a/c3349addcff3d10fb3284f6882d2238e.gif'} width='500px' style={{ margin: 'auto' }} height='200px' alt='Loading' />
   ) : (
     <BrowserRouter>
       <Switch>
         {/* add routes with layouts */}
-        <Route path="/admin" component={Admin} />
+        <Route path="/dashboard" component={Admin} />
         <Route path="/auth" component={Auth} />
         {/* add routes without layouts */}
         <Route path="/landing" exact component={Landing} />

@@ -79,7 +79,6 @@ export default function Sidebar() {
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
             <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-              Admin Layout Pages
             </h6>
             {/* Navigation */}
 
@@ -88,16 +87,16 @@ export default function Sidebar() {
                 <Link
                   className={
                     'text-xs uppercase py-3 font-bold block ' +
-                    (window.location.href.indexOf('/admin/dashboard') !== -1
+                    (window.location.href.split('/')[window.location.href.split('/').length - 1].toUpperCase().indexOf("DASHBOARD") !== -1
                       ? 'text-lightBlue-500 hover:text-lightBlue-600'
                       : 'text-blueGray-700 hover:text-blueGray-500')
                   }
-                  to="/admin/dashboard"
+                  to="/dashboard"
                 >
                   <i
                     className={
                       'fas fa-tv mr-2 text-sm ' +
-                      (window.location.href.indexOf('/admin/dashboard') !== -1
+                      (window.location.href.split('/')[window.location.href.split('/').length - 1].toUpperCase().indexOf("DASHBOARD") !== -1
                         ? 'opacity-75'
                         : 'text-blueGray-300')
                     }
@@ -105,47 +104,46 @@ export default function Sidebar() {
                   Dashboard
                 </Link>
               </li>
-
               <li className="items-center">
                 <Link
                   className={
                     'text-xs uppercase py-3 font-bold block ' +
-                    (window.location.href.indexOf('/admin/settings') !== -1
+                    (window.location.href.indexOf('/dashboard/projects') !== -1
                       ? 'text-lightBlue-500 hover:text-lightBlue-600'
                       : 'text-blueGray-700 hover:text-blueGray-500')
                   }
-                  to="/admin/settings"
+                  to="/dashboard/projects"
                 >
                   <i
                     className={
-                      'fas fa-tools mr-2 text-sm ' +
-                      (window.location.href.indexOf('/admin/settings') !== -1
+                      'fas fa-table mr-2 text-sm ' +
+                      (window.location.href.indexOf('/dashboard/projects') !== -1
                         ? 'opacity-75'
                         : 'text-blueGray-300')
                     }
                   ></i>{' '}
-                  Settings
+                  Projects
                 </Link>
               </li>
               <li className="items-center">
                 <Link
                   className={
                     'text-xs uppercase py-3 font-bold block ' +
-                    (window.location.href.indexOf('/admin/projects') !== -1
+                    (window.location.href.indexOf('/dashboard/settings') !== -1
                       ? 'text-lightBlue-500 hover:text-lightBlue-600'
                       : 'text-blueGray-700 hover:text-blueGray-500')
                   }
-                  to="/admin/projects"
+                  to="/dashboard/settings"
                 >
                   <i
                     className={
-                      'fas fa-table mr-2 text-sm ' +
-                      (window.location.href.indexOf('/admin/projects') !== -1
+                      'fas fa-tools mr-2 text-sm ' +
+                      (window.location.href.indexOf('/dashboard/settings') !== -1
                         ? 'opacity-75'
                         : 'text-blueGray-300')
                     }
                   ></i>{' '}
-                  Projects
+                  Settings
                 </Link>
               </li>
             </ul>

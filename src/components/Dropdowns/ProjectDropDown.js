@@ -37,7 +37,7 @@ const ProjectDropDown = (props) => {
       })
   }
   const editP = () => {
-    window.location.replace(`/admin/project/edit/${project._id}`)
+    window.location.replace(`/dashboard/project/edit/${project._id}`)
   }
 
   return (
@@ -62,7 +62,7 @@ const ProjectDropDown = (props) => {
         }
       >
         <Link
-          to={`/admin/project/edit/${project._id}`}
+          to={`/dashboard/project/edit/${project._id}`}
           className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
         >
           Edit

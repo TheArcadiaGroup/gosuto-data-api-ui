@@ -21,7 +21,7 @@ const IndexDropdown = () => {
     <>
       <a
         className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-        href="#pablo"
+        href="#"
         ref={btnDropdownRef}
         onClick={(e) => {
           e.preventDefault()
@@ -45,7 +45,7 @@ const IndexDropdown = () => {
           Welcome !
         </span>
         <Link
-          to="/admin/dashboard"
+          to="/dashboard"
           className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
         >
           Dashboard

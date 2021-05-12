@@ -115,7 +115,7 @@ export default function Profile() {
                         a solid groove structure. An artist of considerable range.
                       </p>
                       <a
-                        href="#pablo"
+                        href="#"
                         className="font-normal text-lightBlue-500"
                         onClick={(e) => e.preventDefault()}
                       >

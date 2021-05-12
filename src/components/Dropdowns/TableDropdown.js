@@ -19,7 +19,7 @@ const NotificationDropdown = () => {
     <>
       <a
         className="text-blueGray-500 py-1 px-3"
-        href="#pablo"
+        href="#"
         ref={btnDropdownRef}
         onClick={(e) => {
           e.preventDefault()

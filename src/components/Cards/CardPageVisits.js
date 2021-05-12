@@ -22,14 +22,14 @@ export default function CardPageVisits() {
                 Top methods by request
               </h3>
             </div>
-            <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
+            {/* <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
               <button
                 className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                 type="button"
               >
                 See all
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="block w-full overflow-x-auto">
@@ -49,10 +49,10 @@ export default function CardPageVisits() {
               {topMethods.map((method) => {
                 return (
                   <tr key={`methde${Object.keys(method)[0]}`}>
-                    <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                    <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-left">
                       {Object.keys(method)[0]}
                     </th>
-                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
                       {JSON.stringify(method[Object.keys(method)[0]])}
                     </td>
                   </tr>

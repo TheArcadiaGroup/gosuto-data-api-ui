@@ -3,10 +3,6 @@
   "plugins": ["react"],
   "extends": ["plugin:prettier/recommended"],
   "rules": {
-    "prettier/prettier": ["error", {
-      "endOfLine": "off"
-    }],
-    "no-undef": "off",
-    "no-console": "warn"
+    "prettier/prettier": 0
   }
 }

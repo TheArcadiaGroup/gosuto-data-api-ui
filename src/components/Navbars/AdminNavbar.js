@@ -27,8 +27,7 @@ export default function Navbar() {
                   focus:outline-none mr-1 ease-linear transition-all duration-150"
                   type="button"
                 >
-                  {' '}
-                  Upgrade
+                  CHANGE PLAN
                 </Link>
               </div>
             </div>

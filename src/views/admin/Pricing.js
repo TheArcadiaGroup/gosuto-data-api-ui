@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { getPacks } from 'api/pack'
+
+import { getPacks, selectFreePlan } from 'api/pack'
 import { useSelector } from 'react-redux'
 import Modal from 'components/Modal'
 // components
@@ -9,6 +10,16 @@ export default function Pricing() {
   const [showModal, setShowModal] = useState({ state: false, pack: {} })
   //const [selected, setShowModal] = useState(false)
   const { isAuth, user } = useSelector((state) => state.user)
+
+  function getFreePlan() {
+    selectFreePlan()
+      .then(() => {
+        window.location.reload()
+      })
+      .catch((err) => {
+        //window.location.reload()
+      })
+  }
   useEffect(() => {
     async function loadPacks() {
       const res = await getPacks()
@@ -58,7 +69,7 @@ export default function Pricing() {
                       {pack.nbProjects} Projects
                     </li>
                     <li className="pt-3 pb-4 border-b border-gray-300">
-                      {pack.nbRequests} Projects
+                      {pack.nbRequests} Requests
                     </li>
                     <li className="pt-4 pb-4 border-b border-gray-300">
                       Send up to 3 GB
@@ -100,21 +111,35 @@ export default function Pricing() {
                       {pack.nbProjects} Projects
                     </li>
                     <li className="pt-3 pb-4 border-b border-gray-300">
-                      {pack.nbRequests} Projects
+                      {pack.nbRequests} Requests
                     </li>
                     <li className="pt-4 pb-4 border-b border-gray-300">
                       Send up to 3 GB
                     </li>
                   </ul>
-                  <button
-                    style={{
-                      backgroundImage: 'linear-gradient(180deg, #70aac7 0%, #0284c7 100%)'
-                    }}
-                    onClick={() => setShowModal({ state: true, pack: pack })}
-                    className=" uppercase text-center text-sm mt-12 xl:px-24 px-12 sm:px-16 py-2 font-bold text-primary-very-light rounded-lg"
-                  >
-                    SELECT PLAN
-                  </button>
+                  {pack.free ? (
+                    <button
+                      style={{
+                        backgroundImage:
+                          'linear-gradient(180deg, #70aac7 0%, #0284c7 100%)'
+                      }}
+                      onClick={getFreePlan}
+                      className=" uppercase text-center text-sm mt-12 xl:px-24 px-12 sm:px-16 py-2 font-bold text-primary-very-light rounded-lg"
+                    >
+                      SELECT PLAN
+                    </button>
+                  ) : (
+                    <button
+                      style={{
+                        backgroundImage:
+                          'linear-gradient(180deg, #70aac7 0%, #0284c7 100%)'
+                      }}
+                      onClick={() => setShowModal({ state: true, pack: pack })}
+                      className=" uppercase text-center text-sm mt-12 xl:px-24 px-12 sm:px-16 py-2 font-bold text-primary-very-light rounded-lg"
+                    >
+                      SELECT PLAN
+                    </button>
+                  )}
                 </article>
               )
             }

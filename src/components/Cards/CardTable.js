@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import { getProjects } from '../../api/project'
 // components
 
 import ProjectDropDown from 'components/Dropdowns/ProjectDropDown.js'
 
 export default function CardTable({ color }) {
+  const { isAuth, user } = useSelector((state) => state.user)
+
   const [projects, setProjects] = useState([])
   useEffect(() => {
     async function loadProjects() {
@@ -36,12 +39,24 @@ export default function CardTable({ color }) {
               </h3>
             </div>
             <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-              <Link
-                to="/admin/project/create"
-                className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-              >
-                Create
-              </Link>
+              {user.pack.nbProjects === projects.length ? (
+                <button
+                  to={null}
+                  onClick={(event) => event.preventDefault()}
+                  style={{ cursor: 'default', opacity: 0.5 }}
+                  className="disabled:opacity-50 bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                  disabled
+                >
+                  Create
+                </button>
+              ) : (
+                <Link
+                  to="/admin/project/create"
+                  className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                >
+                  Create
+                </Link>
+              )}
             </div>
           </div>
         </div>

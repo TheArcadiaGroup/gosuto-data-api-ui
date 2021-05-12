@@ -1,28 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { getPack } from '../../api/pack'
+
 // components
 
 import CardStats from 'components/Cards/CardStats.js'
-import { getProjects } from 'api/project'
-import { getAllToday } from 'api/request'
+import { getStat } from 'api/stat'
 
 export default function HeaderStats() {
   const { isAuth, user } = useSelector((state) => state.user)
-  const [projects, setProjects] = useState(0)
-  const [nbRequests, setNbRequests] = useState(0)
+  const [stat, setStat] = useState(0)
+
   useEffect(() => {
-    async function loadProjects() {
-      const res = await getProjects()
-      setProjects(res.data.length)
+    async function loadStat() {
+      const res = await getStat()
+      let yesterdayRequests =
+        res.data.nbRequestsYesterday === 0 ? 1 : res.data.nbRequestsYesterday
+      const perf =
+        (res.data.nbRequestsToday - res.data.nbRequestsYesterday) /
+        yesterdayRequests /
+        100
+      res.data.perf = perf
+      setStat(res.data)
     }
-    loadProjects()
-    async function loadRequests() {
-      const res = await getAllToday()
-      setNbRequests(res.data.length)
-    }
-    loadRequests()
-  }, [])
+    loadStat()
+  }, [window.location.href])
   return (
     <>
       {/* Header */}
@@ -34,7 +35,7 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="CURRENT PLAN"
-                  statTitle={user.pack.name}
+                  statTitle={user.pack && user.pack.name && user.pack.name}
                   statArrow="up"
                   statPercent="3.48"
                   statPercentColor="text-emerald-500"
@@ -46,7 +47,9 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="Total Projects"
-                  statTitle={`${projects} / ${user.pack.nbProjects}`}
+                  statTitle={`${stat && stat.nbProjects} / ${
+                    user.pack && user.pack.nbProjects && user.pack.nbProjects
+                  }`}
                   statArrow="down"
                   statPercent="3.48"
                   statPercentColor="text-red-500"
@@ -58,7 +61,9 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="Requests Today"
-                  statTitle={`${nbRequests} / ${user.pack.nbRequests}`}
+                  statTitle={`${stat && stat.nbRequestsToday} / ${
+                    user.pack && user.pack.nbRequests && user.pack.nbRequests
+                  }`}
                   statArrow="down"
                   statPercent="1.10"
                   statPercentColor="text-orange-500"
@@ -70,11 +75,16 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="PERFORMANCE"
-                  statTitle="49,65%"
-                  statArrow="up"
-                  statPercent="12"
-                  statPercentColor="text-emerald-500"
-                  statDescripiron="Since last month"
+                  statTitle={`${
+                    stat && stat.nbRequestsYesterday && stat.nbRequestsYesterday
+                  } Requests / Yesterday`}
+                  showStat={true}
+                  statArrow={stat && stat.perf > 0 ? 'up' : 'down'}
+                  statPercent={`${stat && stat.perf && (stat.perf * 100).toFixed(2)}`}
+                  statPercentColor={
+                    stat && stat.perf > 0 ? 'text-emerald-500' : 'text-red-500'
+                  }
+                  statDescripiron="Since yesterday"
                   statIconName="fas fa-percent"
                   statIconColor="bg-lightBlue-500"
                 />

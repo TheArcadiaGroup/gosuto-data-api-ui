@@ -48,7 +48,7 @@ export default function CardPageVisits() {
             <tbody>
               {topMethods.map((method) => {
                 return (
-                  <tr>
+                  <tr key={`methde${Object.keys(method)[0]}`}>
                     <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
                       {Object.keys(method)[0]}
                     </th>

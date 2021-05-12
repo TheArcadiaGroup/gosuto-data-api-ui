@@ -1,26 +1,48 @@
 import React from 'react'
 import Chart from 'chart.js'
-
+import { getStatForbarChart } from 'api/stat'
 export default function CardLineChart() {
+  const [data, setData] = React.useState(null)
   React.useEffect(() => {
+    async function LoadData() {
+      const res = await getStatForbarChart()
+      setData(res.data)
+    }
+    LoadData()
+  }, [])
+
+  React.useEffect(() => {
+    const weekday = [
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday'
+    ]
+    const today = new Date()
+    const month = today.getMonth() + 1
+    const year = today.getFullYear()
+    const td = today.getDate()
+    const realMonth = parseInt(month, 10) - 1
+    let weekDaysObj = new Array()
+    for (var i = td; i > td - 7; i--) {
+      var d = new Date(year, realMonth, i)
+
+      weekDaysObj.push(`${d.getDate()}-${weekday[d.getDay()]}`)
+    }
     var config = {
       type: 'line',
       data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        labels: weekDaysObj.reverse(),
         datasets: [
           {
-            label: new Date().getFullYear(),
+            label: 'This Week',
             backgroundColor: '#4c51bf',
             borderColor: '#4c51bf',
-            data: [65, 78, 66, 44, 56, 67, 75],
+            data: data,
             fill: false
-          },
-          {
-            label: new Date().getFullYear() - 1,
-            fill: false,
-            backgroundColor: '#fff',
-            borderColor: '#fff',
-            data: [40, 68, 86, 74, 56, 60, 87]
           }
         ]
       },
@@ -97,7 +119,7 @@ export default function CardLineChart() {
     }
     var ctx = document.getElementById('line-chart').getContext('2d')
     window.myLine = new Chart(ctx, config)
-  }, [])
+  }, [data])
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-blueGray-700">

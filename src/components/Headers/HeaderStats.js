@@ -16,9 +16,7 @@ export default function HeaderStats() {
       let yesterdayRequests =
         res.data.nbRequestsYesterday === 0 ? 1 : res.data.nbRequestsYesterday
       const perf =
-        (res.data.nbRequestsToday - res.data.nbRequestsYesterday) /
-        yesterdayRequests /
-        100
+        (res.data.nbRequestsToday - res.data.nbRequestsYesterday) / yesterdayRequests
       res.data.perf = perf
       setStat(res.data)
     }

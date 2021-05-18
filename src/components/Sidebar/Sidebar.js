@@ -78,8 +78,7 @@ export default function Sidebar() {
             {/* Divider */}
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
-            <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-            </h6>
+            <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"></h6>
             {/* Navigation */}
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none">
@@ -87,7 +86,10 @@ export default function Sidebar() {
                 <Link
                   className={
                     'text-xs uppercase py-3 font-bold block ' +
-                    (window.location.href.split('/')[window.location.href.split('/').length - 1].toUpperCase().indexOf("DASHBOARD") !== -1
+                    (window.location.href
+                      .split('/')
+                      [window.location.href.split('/').length - 1].toUpperCase()
+                      .indexOf('DASHBOARD') !== -1
                       ? 'text-lightBlue-500 hover:text-lightBlue-600'
                       : 'text-blueGray-700 hover:text-blueGray-500')
                   }
@@ -96,7 +98,10 @@ export default function Sidebar() {
                   <i
                     className={
                       'fas fa-tv mr-2 text-sm ' +
-                      (window.location.href.split('/')[window.location.href.split('/').length - 1].toUpperCase().indexOf("DASHBOARD") !== -1
+                      (window.location.href
+                        .split('/')
+                        [window.location.href.split('/').length - 1].toUpperCase()
+                        .indexOf('DASHBOARD') !== -1
                         ? 'opacity-75'
                         : 'text-blueGray-300')
                     }
@@ -129,21 +134,21 @@ export default function Sidebar() {
                 <Link
                   className={
                     'text-xs uppercase py-3 font-bold block ' +
-                    (window.location.href.indexOf('/dashboard/settings') !== -1
+                    (window.location.href.indexOf('/dashboard/profile') !== -1
                       ? 'text-lightBlue-500 hover:text-lightBlue-600'
                       : 'text-blueGray-700 hover:text-blueGray-500')
                   }
-                  to="/dashboard/settings"
+                  to="/dashboard/profile"
                 >
                   <i
                     className={
-                      'fas fa-tools mr-2 text-sm ' +
-                      (window.location.href.indexOf('/dashboard/settings') !== -1
+                      'fas fa-user mr-2 text-sm ' +
+                      (window.location.href.indexOf('/dashboard/profile') !== -1
                         ? 'opacity-75'
                         : 'text-blueGray-300')
                     }
                   ></i>{' '}
-                  Settings
+                  Profile
                 </Link>
               </li>
             </ul>

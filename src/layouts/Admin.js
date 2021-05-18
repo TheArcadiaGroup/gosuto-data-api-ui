@@ -11,6 +11,8 @@ import FooterAdmin from 'components/Footers/FooterAdmin.js'
 // views
 
 import Dashboard from 'views/admin/Dashboard'
+import Profile from 'views/admin/Profile'
+import EditPassword from 'views/admin/EditPassword'
 import Settings from 'views/admin/Settings.js'
 import Pricing from 'views/admin/Pricing.js'
 import Tables from 'views/admin/Tables'
@@ -22,7 +24,7 @@ export default function Admin() {
   const { isAuth } = useSelector((state) => state.user)
   return (
     <>
-      {isAuth ?
+      {isAuth ? (
         <>
           <Sidebar />
           <div
@@ -36,17 +38,33 @@ export default function Admin() {
               <Switch>
                 <ProtectedRoute path="/dashboard" exact component={Dashboard} />
                 <ProtectedRoute path="/dashboard/settings" exact component={Settings} />
+                <ProtectedRoute path="/dashboard/profile" exact component={Profile} />
+                <ProtectedRoute
+                  path="/dashboard/profile/editPassword"
+                  exact
+                  component={EditPassword}
+                />
                 <ProtectedRoute path="/dashboard/pricing" exact component={Pricing} />
                 <ProtectedRoute path="/dashboard/projects" exact component={Tables} />
-                <ProtectedRoute path="/dashboard/project/create" exact component={Create} />
-                <ProtectedRoute path="/dashboard/project/edit/:id" exact component={Edit} />
+                <ProtectedRoute
+                  path="/dashboard/project/create"
+                  exact
+                  component={Create}
+                />
+                <ProtectedRoute
+                  path="/dashboard/project/edit/:id"
+                  exact
+                  component={Edit}
+                />
                 <Redirect from="*" to="/dashboard" />
               </Switch>
               <FooterAdmin />
             </div>
-          </div> </> : <Redirect from="*" to="/" />
-      }
-
+          </div>{' '}
+        </>
+      ) : (
+        <Redirect from="*" to="/" />
+      )}
     </>
   )
 }

@@ -1,11 +1,12 @@
 /*eslint-disable*/
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import { useSelector } from 'react-redux'
 import NotificationDropdown from 'components/Dropdowns/NotificationDropdown.js'
 import UserDropdown from 'components/Dropdowns/UserDropdown.js'
 
 export default function Sidebar() {
+  const { isAuth, user } = useSelector((state) => state.user)
   const [collapseShow, setCollapseShow] = React.useState('hidden')
   return (
     <>
@@ -151,6 +152,31 @@ export default function Sidebar() {
                   Profile
                 </Link>
               </li>
+              {user && user.role.startsWith('admin') ? (
+                <li className="items-center">
+                  <Link
+                    className={
+                      'text-xs uppercase py-3 font-bold block ' +
+                      (window.location.href.indexOf('/dashboard/users') !== -1
+                        ? 'text-lightBlue-500 hover:text-lightBlue-600'
+                        : 'text-blueGray-700 hover:text-blueGray-500')
+                    }
+                    to="/dashboard/users"
+                  >
+                    <i
+                      className={
+                        'fas fa-user mr-2 text-sm ' +
+                        (window.location.href.indexOf('/dashboard/users') !== -1
+                          ? 'opacity-75'
+                          : 'text-blueGray-300')
+                      }
+                    ></i>{' '}
+                    Users
+                  </Link>
+                </li>
+              ) : (
+                ''
+              )}
             </ul>
           </div>
         </div>

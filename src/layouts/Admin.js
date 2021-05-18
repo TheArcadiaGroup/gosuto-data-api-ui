@@ -16,6 +16,8 @@ import EditPassword from 'views/admin/EditPassword'
 import Settings from 'views/admin/Settings.js'
 import Pricing from 'views/admin/Pricing.js'
 import Tables from 'views/admin/Tables'
+import Users from 'views/admin/Users'
+import banUser from 'views/admin/User/banUser'
 import Create from 'views/admin/Project/Create'
 import Edit from 'views/admin/Project/Edit'
 import { useSelector } from 'react-redux'
@@ -45,6 +47,12 @@ export default function Admin() {
                   component={EditPassword}
                 />
                 <ProtectedRoute path="/dashboard/pricing" exact component={Pricing} />
+                <ProtectedRoute path="/dashboard/users" exact component={Users} />
+                <ProtectedRoute
+                  path="/dashboard/user/ban/:id"
+                  exact
+                  component={banUser}
+                />
                 <ProtectedRoute path="/dashboard/projects" exact component={Tables} />
                 <ProtectedRoute
                   path="/dashboard/project/create"

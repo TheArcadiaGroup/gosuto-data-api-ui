@@ -1487,6 +1487,10 @@ select {
   height: 0.5rem;
 }
 
+.h-3 {
+  height: 0.75rem;
+}
+
 .h-5 {
   height: 1.25rem;
 }
@@ -2349,11 +2353,6 @@ select {
   color: rgba(255, 255, 255, var(--tw-text-opacity));
 }
 
-.text-pink-400 {
-  --tw-text-opacity: 1;
-  color: rgba(244, 114, 182, var(--tw-text-opacity));
-}
-
 .text-lightBlue-300 {
   --tw-text-opacity: 1;
   color: rgba(125, 211, 252, var(--tw-text-opacity));
@@ -2481,6 +2480,10 @@ select {
 
 .break-words {
   overflow-wrap: break-word;
+}
+
+.w-3 {
+  width: 0.75rem;
 }
 
 .w-5 {
@@ -3004,10 +3007,6 @@ select {
     width: 33.333333%;
   }
 
-  .lg\:w-5\/12 {
-    width: 41.666667%;
-  }
-
   .lg\:w-6\/12 {
     width: 50%;
   }
@@ -3041,10 +3040,6 @@ select {
 
   .xl\:w-6\/12 {
     width: 50%;
-  }
-
-  .xl\:w-8\/12 {
-    width: 66.666667%;
   }
 }
 

@@ -21,7 +21,7 @@ export default function HeaderStats() {
       setStat(res.data)
     }
     loadStat()
-  }, [window.location.href, stat])
+  }, [window.location.href])
   return (
     <>
       {/* Header */}
@@ -58,8 +58,7 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="Requests Today"
-                  statTitle={(stat && user) && `${stat && stat.nbRequestsToday} / ${(user.pack && user.pack.nbRequests) && user.pack.nbRequests
-                    }`}
+                  statTitle={(stat && user.pack) && `${stat.nbRequestsToday} / ${user.pack.nbRequests}`}
                   statArrow="down"
                   statPercent="1.10"
                   statPercentColor="text-orange-500"

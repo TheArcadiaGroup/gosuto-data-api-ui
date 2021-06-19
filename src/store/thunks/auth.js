@@ -23,7 +23,7 @@ export const attemptLogin = (user) => async (dispatch) => {
       setAuthToken(token)
       ///const decoded = jwt_decode(token)
       dispatch(login(user))
-      dispatch(push('/'))
+      dispatch(push('/dashboard'))
       return res.data
     })
     .catch(dispatch(push('/login')))

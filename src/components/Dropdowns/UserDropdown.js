@@ -1,5 +1,6 @@
 import React from 'react'
 import { createPopper } from '@popperjs/core'
+import { Link } from 'react-router-dom'
 
 const UserDropdown = () => {
   // dropdown props
@@ -28,11 +29,11 @@ const UserDropdown = () => {
       >
         <div className="items-center flex">
           <span className="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full">
-            <img
+            {/* <img
               alt="..."
               className="w-full rounded-full align-middle border-none shadow-lg"
               src={require('assets/img/team-1-800x800.jpg').default}
-            />
+            /> */}
           </span>
         </div>
       </a>
@@ -50,36 +51,14 @@ const UserDropdown = () => {
           }
           onClick={(e) => e.preventDefault()}
         >
-          Action
+          <Link
+            to="/auth/logout"
+            className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+          >
+            Log Out
+          </Link>
         </a>
-        <a
-          href="#"
-          className={
-            'text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700'
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-          Another action
-        </a>
-        <a
-          href="#"
-          className={
-            'text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700'
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-          Something else here
-        </a>
-        <div className="h-0 my-2 border border-solid border-blueGray-100" />
-        <a
-          href="#"
-          className={
-            'text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700'
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-          Seprated link
-        </a>
+
       </div>
     </>
   )

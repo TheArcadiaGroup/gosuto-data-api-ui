@@ -21,7 +21,7 @@ export default function HeaderStats() {
       setStat(res.data)
     }
     loadStat()
-  }, [window.location.href])
+  }, [window.location.href, stat])
   return (
     <>
       {/* Header */}
@@ -33,7 +33,7 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="CURRENT PLAN"
-                  statTitle={user.pack && user.pack.name && user.pack.name}
+                  statTitle={(user.pack && user.pack.name) && user.pack.name}
                   statArrow="up"
                   statPercent="3.48"
                   statPercentColor="text-emerald-500"
@@ -45,9 +45,8 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="Total Projects"
-                  statTitle={`${stat && stat.nbProjects} / ${
-                    user.pack && user.pack.nbProjects && user.pack.nbProjects
-                  }`}
+                  statTitle={(user.pack && user.pack.nbProjects) && `${stat && stat.nbProjects} / ${user.pack.nbProjects
+                    }`}
                   statArrow="down"
                   statPercent="3.48"
                   statPercentColor="text-red-500"
@@ -59,9 +58,8 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="Requests Today"
-                  statTitle={`${stat && stat.nbRequestsToday} / ${
-                    user.pack && user.pack.nbRequests && user.pack.nbRequests
-                  }`}
+                  statTitle={(stat && user) && `${stat && stat.nbRequestsToday} / ${(user.pack && user.pack.nbRequests) && user.pack.nbRequests
+                    }`}
                   statArrow="down"
                   statPercent="1.10"
                   statPercentColor="text-orange-500"
@@ -72,10 +70,9 @@ export default function HeaderStats() {
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="PERFORMANCE"
-                  statTitle={`${
-                    stat && stat.nbRequestsYesterday && stat.nbRequestsYesterday
-                  } Requests / Yesterday`}
+                  statSubtitle="Requests Yesterday"
+                  statTitle={(stat) && `${stat.nbRequestsYesterday
+                    } Requests Yesterday`}
                   showStat={true}
                   statArrow={stat && stat.perf > 0 ? 'up' : 'down'}
                   statPercent={`${stat && stat.perf && (stat.perf * 100).toFixed(2)}`}

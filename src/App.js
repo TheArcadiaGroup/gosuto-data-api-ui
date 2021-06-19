@@ -25,9 +25,7 @@ function MainApp() {
       .catch(() => setLoading(false))
     // eslint-disable-next-line
   }, [])
-  return loading ? (
-    <img src={'https://i.pinimg.com/originals/c3/34/9a/c3349addcff3d10fb3284f6882d2238e.gif'} width='500px' style={{ margin: 'auto' }} height='200px' alt='Loading' />
-  ) : (
+  return !loading && (
     <BrowserRouter>
       <Switch>
         {/* add routes with layouts */}

@@ -17,7 +17,7 @@ export default function Login() {
     })
   }
   return isAuth ? (
-    <Redirect to="/" />
+    <Redirect to="/dashboard" />
   ) : (
     <>
       <div className="container mx-auto px-4 h-full">

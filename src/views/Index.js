@@ -62,9 +62,8 @@ export default function Index() {
             y="0"
           >
             <polygon
-              className="fill-current"
               points="2560 0 2560 100 0 100"
-              style={{ color: '#000852' }}
+              style={{ color: '#000852', fill: '#000852', border: 'none', stroke: '#000852',strokeWidth:'5px' }}
             ></polygon>
           </svg>
         </div>
@@ -350,7 +349,7 @@ export default function Index() {
             <polygon
               className="fill-current"
               points="2560 0 2560 100 0 100"
-              style={{ color: '#FAFAFD' }}
+              style={{ color: '#FAFAFD' ,stroke: '#FAFAFD',strokeWidth:'5px' }}
             ></polygon>
           </svg>
         </div>

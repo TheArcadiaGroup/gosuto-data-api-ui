@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 // components
 
 import CardStats from 'components/Cards/CardStats.js'
 import { getStat } from 'api/stat'
+import { attemptGetUser } from 'store/thunks/user'
 
 export default function HeaderStats() {
   const { isAuth, user } = useSelector((state) => state.user)
   const [stat, setStat] = useState(0)
-
+  const dispatch = useDispatch();
   useEffect(() => {
     async function loadStat() {
       const res = await getStat()
@@ -21,7 +22,7 @@ export default function HeaderStats() {
       setStat(res.data)
     }
     loadStat()
-  }, [window.location.href])
+  }, [])
   return (
     <>
       {/* Header */}
@@ -33,7 +34,7 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="CURRENT PLAN"
-                  statTitle={(user.pack && user.pack.name) && user.pack.name}
+                  statTitle={(user.pack) && user.pack.name}
                   statArrow="up"
                   statPercent="3.48"
                   statPercentColor="text-emerald-500"
@@ -45,8 +46,7 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="Total Projects"
-                  statTitle={(user.pack && user.pack.nbProjects) && `${stat && stat.nbProjects} / ${user.pack.nbProjects
-                    }`}
+                  statTitle={(user.pack && user.pack.nbRequests) && `${stat && stat.nbProjects} / ${user.pack.nbProjects}`}
                   statArrow="down"
                   statPercent="3.48"
                   statPercentColor="text-red-500"
@@ -58,7 +58,7 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="Requests Today"
-                  statTitle={(stat && user.pack) && `${stat.nbRequestsToday} / ${user.pack.nbRequests}`}
+                  statTitle={(stat && user.pack.nbRequests) && `${stat.nbRequestsToday} / ${user.pack.nbRequests}`}
                   statArrow="down"
                   statPercent="1.10"
                   statPercentColor="text-orange-500"

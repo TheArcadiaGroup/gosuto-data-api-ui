@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { attemptLogin } from '../../store/thunks/auth'
 import { useDispatch, useSelector } from 'react-redux'
+import { attemptGetUser } from 'store/thunks/user'
 export default function Login() {
   const { isAuth } = useSelector((state) => state.user)
   const [serverError, setServerError] = useState('')
@@ -14,6 +15,10 @@ export default function Login() {
       if (error.response) {
         setServerError(error.response.data.message)
       }
+    }).then(() => {
+      dispatch(attemptGetUser())
+        .then(() => { })
+        .catch(() => { })
     })
   }
   return isAuth ? (

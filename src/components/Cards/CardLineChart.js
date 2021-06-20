@@ -29,7 +29,6 @@ export default function CardLineChart() {
     let weekDaysObj = new Array()
     for (var i = td; i > td - 7; i--) {
       var d = new Date(year, realMonth, i)
-
       weekDaysObj.push(`${d.getDate()}-${weekday[d.getDay()]}`)
     }
     var config = {

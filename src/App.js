@@ -25,14 +25,11 @@ function MainApp() {
       .catch(() => setLoading(false))
     // eslint-disable-next-line
   }, [])
-
-  return loading ? (
-    'Loading ...'
-  ) : (
+  return !loading && (
     <BrowserRouter>
       <Switch>
         {/* add routes with layouts */}
-        <Route path="/admin" component={Admin} />
+        <Route path="/dashboard" component={Admin} />
         <Route path="/auth" component={Auth} />
         {/* add routes without layouts */}
         <Route path="/landing" exact component={Landing} />

@@ -1,11 +1,12 @@
 /*eslint-disable*/
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import { useSelector } from 'react-redux'
 import NotificationDropdown from 'components/Dropdowns/NotificationDropdown.js'
 import UserDropdown from 'components/Dropdowns/UserDropdown.js'
 
 export default function Sidebar() {
+  const { isAuth, user } = useSelector((state) => state.user)
   const [collapseShow, setCollapseShow] = React.useState('hidden')
   return (
     <>
@@ -78,9 +79,7 @@ export default function Sidebar() {
             {/* Divider */}
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
-            <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-              Admin Layout Pages
-            </h6>
+            <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"></h6>
             {/* Navigation */}
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none">
@@ -88,16 +87,22 @@ export default function Sidebar() {
                 <Link
                   className={
                     'text-xs uppercase py-3 font-bold block ' +
-                    (window.location.href.indexOf('/admin/dashboard') !== -1
+                    (window.location.href
+                      .split('/')
+                      [window.location.href.split('/').length - 1].toUpperCase()
+                      .indexOf('DASHBOARD') !== -1
                       ? 'text-lightBlue-500 hover:text-lightBlue-600'
                       : 'text-blueGray-700 hover:text-blueGray-500')
                   }
-                  to="/admin/dashboard"
+                  to="/dashboard"
                 >
                   <i
                     className={
                       'fas fa-tv mr-2 text-sm ' +
-                      (window.location.href.indexOf('/admin/dashboard') !== -1
+                      (window.location.href
+                        .split('/')
+                        [window.location.href.split('/').length - 1].toUpperCase()
+                        .indexOf('DASHBOARD') !== -1
                         ? 'opacity-75'
                         : 'text-blueGray-300')
                     }
@@ -105,42 +110,20 @@ export default function Sidebar() {
                   Dashboard
                 </Link>
               </li>
-
               <li className="items-center">
                 <Link
                   className={
                     'text-xs uppercase py-3 font-bold block ' +
-                    (window.location.href.indexOf('/admin/settings') !== -1
+                    (window.location.href.indexOf('/dashboard/projects') !== -1
                       ? 'text-lightBlue-500 hover:text-lightBlue-600'
                       : 'text-blueGray-700 hover:text-blueGray-500')
                   }
-                  to="/admin/settings"
-                >
-                  <i
-                    className={
-                      'fas fa-tools mr-2 text-sm ' +
-                      (window.location.href.indexOf('/admin/settings') !== -1
-                        ? 'opacity-75'
-                        : 'text-blueGray-300')
-                    }
-                  ></i>{' '}
-                  Settings
-                </Link>
-              </li>
-              <li className="items-center">
-                <Link
-                  className={
-                    'text-xs uppercase py-3 font-bold block ' +
-                    (window.location.href.indexOf('/admin/projects') !== -1
-                      ? 'text-lightBlue-500 hover:text-lightBlue-600'
-                      : 'text-blueGray-700 hover:text-blueGray-500')
-                  }
-                  to="/admin/projects"
+                  to="/dashboard/projects"
                 >
                   <i
                     className={
                       'fas fa-table mr-2 text-sm ' +
-                      (window.location.href.indexOf('/admin/projects') !== -1
+                      (window.location.href.indexOf('/dashboard/projects') !== -1
                         ? 'opacity-75'
                         : 'text-blueGray-300')
                     }
@@ -148,6 +131,52 @@ export default function Sidebar() {
                   Projects
                 </Link>
               </li>
+              <li className="items-center">
+                <Link
+                  className={
+                    'text-xs uppercase py-3 font-bold block ' +
+                    (window.location.href.indexOf('/dashboard/profile') !== -1
+                      ? 'text-lightBlue-500 hover:text-lightBlue-600'
+                      : 'text-blueGray-700 hover:text-blueGray-500')
+                  }
+                  to="/dashboard/profile"
+                >
+                  <i
+                    className={
+                      'fas fa-user mr-2 text-sm ' +
+                      (window.location.href.indexOf('/dashboard/profile') !== -1
+                        ? 'opacity-75'
+                        : 'text-blueGray-300')
+                    }
+                  ></i>{' '}
+                  Profile
+                </Link>
+              </li>
+              {user && user.role.startsWith('admin') ? (
+                <li className="items-center">
+                  <Link
+                    className={
+                      'text-xs uppercase py-3 font-bold block ' +
+                      (window.location.href.indexOf('/dashboard/users') !== -1
+                        ? 'text-lightBlue-500 hover:text-lightBlue-600'
+                        : 'text-blueGray-700 hover:text-blueGray-500')
+                    }
+                    to="/dashboard/users"
+                  >
+                    <i
+                      className={
+                        'fas fa-user mr-2 text-sm ' +
+                        (window.location.href.indexOf('/dashboard/users') !== -1
+                          ? 'opacity-75'
+                          : 'text-blueGray-300')
+                      }
+                    ></i>{' '}
+                    Users
+                  </Link>
+                </li>
+              ) : (
+                ''
+              )}
             </ul>
           </div>
         </div>

@@ -10,11 +10,11 @@ export default function Create() {
   const onSubmit = (values) => {
     postProject(values)
       .then(() => {
-        window.location.replace('/admin/projects')
+        window.location.replace('/dashboard/projects')
       })
       .catch((error) => {
         if (error.response) {
-          setServerError(error.response.data.message)
+          setServerError(error.response.data.error)
         }
       })
   }
@@ -61,7 +61,13 @@ export default function Create() {
                     >
                       Create
                     </button>
-                    {serverError && <span style={{ color: 'red' }}>{serverError}</span>}
+                    {serverError && (
+                      <span
+                        style={{ color: 'red', fontSize: '23px', fontWeight: 'bold' }}
+                      >
+                        {serverError}
+                      </span>
+                    )}
                   </div>
                 </form>
               </div>

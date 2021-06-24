@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { getProjects } from '../../api/project'
+import { getAllUsers } from '../../api/index'
 // components
 
-import ProjectDropDown from 'components/Dropdowns/ProjectDropDown.js'
+import UsersDropDown from 'components/Dropdowns/UsersDropDown.js'
 
 export default function CardTable({ color }) {
   const { isAuth, user } = useSelector((state) => state.user)
 
-  const [projects, setProjects] = useState([])
+  const [users, setUsers] = useState([])
   useEffect(() => {
-    async function loadProjects() {
-      const res = await getProjects()
-      setProjects(res.data)
+    async function loadUsers() {
+      const res = await getAllUsers()
+      setUsers(res.data)
     }
-    loadProjects()
+    loadUsers()
   }, [])
-  return (
+  return user && user.role.startsWith('admin') ? (
     <>
       <div
         className={
@@ -35,33 +35,13 @@ export default function CardTable({ color }) {
                   (color === 'light' ? 'text-blueGray-700' : 'text-white')
                 }
               >
-                Projects
+                Registred Users
               </h3>
-            </div>
-            <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-              {user.pack.nbProjects === projects.length ? (
-                <button
-                  to={null}
-                  onClick={(event) => event.preventDefault()}
-                  style={{ cursor: 'default', opacity: 0.5 }}
-                  className="disabled:opacity-50 bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                  disabled
-                >
-                  Create
-                </button>
-              ) : (
-                <Link
-                  to="/dashboard/project/create"
-                  className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                >
-                  Create
-                </Link>
-              )}
             </div>
           </div>
         </div>
         <div className="block w-full overflow-x-auto">
-          {/* Projects table */}
+          {/* Users table */}
           <table className="items-center w-full bg-transparent border-collapse">
             <thead>
               <tr>
@@ -73,7 +53,7 @@ export default function CardTable({ color }) {
                       : 'bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700')
                   }
                 >
-                  Project Name
+                  User Full Name
                 </th>
                 <th
                   className={
@@ -83,7 +63,7 @@ export default function CardTable({ color }) {
                       : 'bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700')
                   }
                 >
-                  API Key
+                  Email
                 </th>
                 <th
                   className={
@@ -93,7 +73,7 @@ export default function CardTable({ color }) {
                       : 'bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700')
                   }
                 >
-                  Endpoint
+                  Status
                 </th>
 
                 <th
@@ -107,7 +87,7 @@ export default function CardTable({ color }) {
               </tr>
             </thead>
             <tbody>
-              {projects.map((project) => {
+              {users.map((user) => {
                 return (
                   <tr>
                     <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-left flex items-center">
@@ -117,17 +97,17 @@ export default function CardTable({ color }) {
                           +(color === 'light' ? 'text-blueGray-600' : 'text-white')
                         }
                       >
-                        {project.name}
+                        {`${user.firstName} ${user.lastName}`}
                       </span>
                     </th>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
-                      {project.apiKey}
+                      {user.email}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
-                      https://gos-back.herokuapp.com/rpc/{project.apiKey}
+                      {user.isBanned ? 'Banned' : 'Not Banned'}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-right">
-                      <ProjectDropDown project={project} />
+                      <UsersDropDown user={user} />
                     </td>
                   </tr>
                 )
@@ -137,6 +117,8 @@ export default function CardTable({ color }) {
         </div>
       </div>
     </>
+  ) : (
+    <Redirect to="/dashboard" />
   )
 }
 

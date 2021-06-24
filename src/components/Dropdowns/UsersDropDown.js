@@ -1,9 +1,9 @@
 import React from 'react'
 import { createPopper } from '@popperjs/core'
-import { regenrateApiKey, deleteProject } from '../../api/project'
+import { banUser } from '../../api/index'
 import { Link } from 'react-router-dom'
-const ProjectDropDown = (props) => {
-  const { project } = props
+const UsersDropDown = (props) => {
+  const { user } = props
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false)
   const btnDropdownRef = React.createRef()
@@ -18,26 +18,14 @@ const ProjectDropDown = (props) => {
     setDropdownPopoverShow(false)
   }
 
-  const regenrate = () => {
-    regenrateApiKey(project._id)
+  const ban = () => {
+    banUser(user._id)
       .then(() => {
         window.location.reload()
       })
       .catch((err) => {
         //window.location.reload()
       })
-  }
-  const deleteP = () => {
-    deleteProject(project._id)
-      .then(() => {
-        window.location.reload()
-      })
-      .catch((err) => {
-        //window.location.reload()
-      })
-  }
-  const editP = () => {
-    window.location.replace(`/dashboard/project/edit/${project._id}`)
   }
 
   return (
@@ -62,35 +50,17 @@ const ProjectDropDown = (props) => {
         }
       >
         <Link
-          to={`/dashboard/project/edit/${project._id}`}
-          className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+          to={`/dashboard/user/ban/${user._id}`}
+          className={
+            'text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700'
+          }
+          style={{ cursor: 'pointer' }}
         >
-          Edit
+          Ban User
         </Link>
-
-        <div
-          role="link"
-          className={
-            'text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700'
-          }
-          style={{ cursor: 'pointer' }}
-          onClick={() => regenrate()}
-        >
-          Re Generate API key
-        </div>
-        <div
-          role="link"
-          className={
-            'text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700'
-          }
-          style={{ cursor: 'pointer' }}
-          onClick={() => deleteP()}
-        >
-          Delete
-        </div>
       </div>
     </>
   )
 }
 
-export default ProjectDropDown
+export default UsersDropDown

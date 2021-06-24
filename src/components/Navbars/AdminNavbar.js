@@ -11,7 +11,7 @@ export default function Navbar() {
           {/* Brand */}
           <a
             className="text-white text-sm uppercase hidden lg:inline-block font-semibold"
-            href="#pablo"
+            href="#"
             onClick={(e) => e.preventDefault()}
           >
             Dashboard
@@ -21,14 +21,13 @@ export default function Navbar() {
             <div className="relative flex w-full flex-wrap items-stretch">
               <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
                 <Link
-                  to="/admin/pricing"
+                  to="/dashboard/pricing"
                   className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold
                   uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none
                   focus:outline-none mr-1 ease-linear transition-all duration-150"
                   type="button"
                 >
-                  {' '}
-                  Upgrade
+                  CHANGE PLAN
                 </Link>
               </div>
             </div>

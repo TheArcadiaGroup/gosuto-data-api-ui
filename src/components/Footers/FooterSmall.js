@@ -16,10 +16,10 @@ export default function FooterSmall(props) {
               <div className="text-sm text-blueGray-500 font-semibold py-1 text-center md:text-left">
                 Copyright © {new Date().getFullYear()}{' '}
                 <a
-                  href="https://github.com/seifeddine-brahem"
+                  href="https://arcadiamgroup.com/"
                   className="text-white hover:text-blueGray-300 text-sm font-semibold py-1"
                 >
-                  ELBRH
+                  Arcadia Media Group
                 </a>
               </div>
             </div>
@@ -27,10 +27,10 @@ export default function FooterSmall(props) {
               <ul className="flex flex-wrap list-none md:justify-end  justify-center">
                 <li>
                   <a
-                    href="https://github.com/seifeddine-brahem"
+                    href="https://arcadiamgroup.com/"
                     className="text-white hover:text-blueGray-300 text-sm font-semibold block py-1 px-3"
                   >
-                    ELBRH
+                    Arcadia Media Group
                   </a>
                 </li>
               </ul>

@@ -202,7 +202,9 @@ Correct the inability to style clickable types in iOS and Safari.
 */
 
 button,
-[type='button'] {
+[type='button'],
+[type='reset'],
+[type='submit'] {
   -webkit-appearance: button;
 }
 
@@ -1145,16 +1147,6 @@ select {
   background-color: rgba(12, 74, 110, var(--tw-bg-opacity));
 }
 
-.bg-teal-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgba(153, 246, 228, var(--tw-bg-opacity));
-}
-
-.bg-teal-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgba(20, 184, 166, var(--tw-bg-opacity));
-}
-
 .bg-emerald-200 {
   --tw-bg-opacity: 1;
   background-color: rgba(167, 243, 208, var(--tw-bg-opacity));
@@ -1168,11 +1160,6 @@ select {
 .bg-emerald-500 {
   --tw-bg-opacity: 1;
   background-color: rgba(16, 185, 129, var(--tw-bg-opacity));
-}
-
-.bg-yellow-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgba(234, 179, 8, var(--tw-bg-opacity));
 }
 
 .bg-orange-200 {
@@ -1203,11 +1190,6 @@ select {
 .bg-red-600 {
   --tw-bg-opacity: 1;
   background-color: rgba(220, 38, 38, var(--tw-bg-opacity));
-}
-
-.bg-red-700 {
-  --tw-bg-opacity: 1;
-  background-color: rgba(185, 28, 28, var(--tw-bg-opacity));
 }
 
 .bg-blueGray-50 {
@@ -1250,11 +1232,6 @@ select {
   background-color: rgba(2, 132, 199, var(--tw-bg-opacity));
 }
 
-.active\:bg-blueGray-50:active {
-  --tw-bg-opacity: 1;
-  background-color: rgba(248, 250, 252, var(--tw-bg-opacity));
-}
-
 .active\:bg-blueGray-600:active {
   --tw-bg-opacity: 1;
   background-color: rgba(71, 85, 105, var(--tw-bg-opacity));
@@ -1285,9 +1262,14 @@ select {
   border-color: rgba(3, 105, 161, var(--tw-border-opacity));
 }
 
-.border-blueGray-50 {
+.border-gray-100 {
   --tw-border-opacity: 1;
-  border-color: rgba(248, 250, 252, var(--tw-border-opacity));
+  border-color: rgba(244, 244, 245, var(--tw-border-opacity));
+}
+
+.border-gray-300 {
+  --tw-border-opacity: 1;
+  border-color: rgba(212, 212, 216, var(--tw-border-opacity));
 }
 
 .border-blueGray-100 {
@@ -1347,10 +1329,6 @@ select {
 
 .border-0 {
   border-width: 0px;
-}
-
-.border-2 {
-  border-width: 2px;
 }
 
 .border {
@@ -1422,6 +1400,11 @@ select {
           flex-wrap: wrap;
 }
 
+.items-start {
+  -webkit-align-items: flex-start;
+          align-items: flex-start;
+}
+
 .items-center {
   -webkit-align-items: center;
           align-items: center;
@@ -1476,6 +1459,10 @@ select {
   float: left;
 }
 
+.font-sans {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
 .font-light {
   font-weight: 300;
 }
@@ -1498,6 +1485,10 @@ select {
 
 .h-2 {
   height: 0.5rem;
+}
+
+.h-3 {
+  height: 0.75rem;
 }
 
 .h-5 {
@@ -1605,6 +1596,11 @@ select {
   line-height: 1;
 }
 
+.text-6xl {
+  font-size: 3.75rem;
+  line-height: 1;
+}
+
 .leading-none {
   line-height: 1;
 }
@@ -1649,11 +1645,6 @@ select {
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
-}
-
-.mx-4 {
-  margin-left: 1rem;
-  margin-right: 1rem;
 }
 
 .my-6 {
@@ -1766,6 +1757,14 @@ select {
   margin-top: 2.5rem;
 }
 
+.mr-10 {
+  margin-right: 2.5rem;
+}
+
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
+
 .mt-12 {
   margin-top: 3rem;
 }
@@ -1780,6 +1779,10 @@ select {
 
 .mt-20 {
   margin-top: 5rem;
+}
+
+.mr-20 {
+  margin-right: 5rem;
 }
 
 .mt-24 {
@@ -1804,10 +1807,6 @@ select {
 
 .ml-auto {
   margin-left: auto;
-}
-
-.-ml-4 {
-  margin-left: -1rem;
 }
 
 .-mt-20 {
@@ -1910,6 +1909,10 @@ select {
   opacity: .8;
 }
 
+.disabled\:opacity-50:disabled {
+  opacity: 0.5;
+}
+
 .outline-none {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -1934,10 +1937,6 @@ select {
 
 .overflow-x-hidden {
   overflow-x: hidden;
-}
-
-.p-2 {
-  padding: 0.5rem;
 }
 
 .p-3 {
@@ -2016,6 +2015,11 @@ select {
   padding-bottom: 2.5rem;
 }
 
+.py-12 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
 .px-12 {
   padding-left: 3rem;
   padding-right: 3rem;
@@ -2034,6 +2038,11 @@ select {
 .py-24 {
   padding-top: 6rem;
   padding-bottom: 6rem;
+}
+
+.px-24 {
+  padding-left: 6rem;
+  padding-right: 6rem;
 }
 
 .py-40 {
@@ -2061,8 +2070,12 @@ select {
   padding-bottom: 0.5rem;
 }
 
-.pl-3 {
-  padding-left: 0.75rem;
+.pt-3 {
+  padding-top: 0.75rem;
+}
+
+.pt-4 {
+  padding-top: 1rem;
 }
 
 .pr-4 {
@@ -2087,10 +2100,6 @@ select {
 
 .pt-8 {
   padding-top: 2rem;
-}
-
-.pl-10 {
-  padding-left: 2.5rem;
 }
 
 .pt-12 {
@@ -2121,6 +2130,10 @@ select {
   padding-top: 6rem;
 }
 
+.pb-24 {
+  padding-bottom: 6rem;
+}
+
 .pt-32 {
   padding-top: 8rem;
 }
@@ -2131,10 +2144,6 @@ select {
 
 .pb-40 {
   padding-bottom: 10rem;
-}
-
-.pt-48 {
-  padding-top: 12rem;
 }
 
 .pb-48 {
@@ -2273,11 +2282,6 @@ select {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.shadow-md {
-  --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
 .shadow-lg {
   --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
@@ -2349,11 +2353,6 @@ select {
   color: rgba(255, 255, 255, var(--tw-text-opacity));
 }
 
-.text-pink-400 {
-  --tw-text-opacity: 1;
-  color: rgba(244, 114, 182, var(--tw-text-opacity));
-}
-
 .text-lightBlue-300 {
   --tw-text-opacity: 1;
   color: rgba(125, 211, 252, var(--tw-text-opacity));
@@ -2372,11 +2371,6 @@ select {
 .text-lightBlue-600 {
   --tw-text-opacity: 1;
   color: rgba(2, 132, 199, var(--tw-text-opacity));
-}
-
-.text-teal-500 {
-  --tw-text-opacity: 1;
-  color: rgba(20, 184, 166, var(--tw-text-opacity));
 }
 
 .text-emerald-500 {
@@ -2488,6 +2482,10 @@ select {
   overflow-wrap: break-word;
 }
 
+.w-3 {
+  width: 0.75rem;
+}
+
 .w-5 {
   width: 1.25rem;
 }
@@ -2516,12 +2514,24 @@ select {
   width: 50%;
 }
 
+.w-4\/5 {
+  width: 80%;
+}
+
 .w-6\/12 {
   width: 50%;
 }
 
+.w-8\/12 {
+  width: 66.666667%;
+}
+
 .w-10\/12 {
   width: 83.333333%;
+}
+
+.w-11\/12 {
+  width: 91.666667%;
 }
 
 .w-full {
@@ -2546,6 +2556,10 @@ select {
 
 .z-50 {
   z-index: 50;
+}
+
+.gap-4 {
+  gap: 1rem;
 }
 
 .transform {
@@ -2665,6 +2679,11 @@ select {
     margin-right: 0.5rem;
   }
 
+  .sm\:px-16 {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
   .sm\:pt-0 {
     padding-top: 0px;
   }
@@ -2729,10 +2748,6 @@ select {
 
   .md\:mt-4 {
     margin-top: 1rem;
-  }
-
-  .md\:mb-4 {
-    margin-bottom: 1rem;
   }
 
   .md\:mt-40 {
@@ -2880,6 +2895,11 @@ select {
             justify-content: flex-start;
   }
 
+  .lg\:justify-center {
+    -webkit-justify-content: center;
+            justify-content: center;
+  }
+
   .lg\:order-1 {
     -webkit-order: 1;
             order: 1;
@@ -2899,20 +2919,16 @@ select {
     margin-bottom: 0px;
   }
 
-  .lg\:mr-1 {
-    margin-right: 0.25rem;
-  }
-
   .lg\:mr-4 {
     margin-right: 1rem;
   }
 
-  .lg\:mt-16 {
-    margin-top: 4rem;
-  }
-
   .lg\:ml-auto {
     margin-left: auto;
+  }
+
+  .lg\:-mt-6 {
+    margin-top: -1.5rem;
   }
 
   .lg\:-ml-16 {
@@ -2930,6 +2946,11 @@ select {
   .lg\:py-2 {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
+  }
+
+  .lg\:px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   .lg\:px-10 {
@@ -2974,21 +2995,6 @@ select {
     text-align: right;
   }
 
-  .lg\:text-white {
-    --tw-text-opacity: 1;
-    color: rgba(255, 255, 255, var(--tw-text-opacity));
-  }
-
-  .lg\:text-blueGray-200 {
-    --tw-text-opacity: 1;
-    color: rgba(226, 232, 240, var(--tw-text-opacity));
-  }
-
-  .lg\:hover\:text-blueGray-200:hover {
-    --tw-text-opacity: 1;
-    color: rgba(226, 232, 240, var(--tw-text-opacity));
-  }
-
   .lg\:w-auto {
     width: auto;
   }
@@ -3019,6 +3025,11 @@ select {
     margin-bottom: 0px;
   }
 
+  .xl\:px-24 {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+
   .xl\:w-3\/12 {
     width: 25%;
   }
@@ -3029,10 +3040,6 @@ select {
 
   .xl\:w-6\/12 {
     width: 50%;
-  }
-
-  .xl\:w-8\/12 {
-    width: 66.666667%;
   }
 }
 

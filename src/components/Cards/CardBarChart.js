@@ -3,13 +3,32 @@ import Chart from 'chart.js'
 
 export default function CardBarChart() {
   React.useEffect(() => {
+    const weekday = [
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday'
+    ]
+    const today = new Date()
+    const month = today.getMonth() + 1
+    const year = today.getFullYear()
+    const td = today.getDate()
+    const realMonth = parseInt(month, 10) - 1
+    let weekDaysObj = new Array()
+    for (var i = td; i > td - 7; i--) {
+      let d = new Date(year, realMonth, i)
+      weekDaysObj.push(weekday[d.getDay()])
+    }
     let config = {
       type: 'bar',
       data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        labels: weekDaysObj,
         datasets: [
           {
-            label: new Date().getFullYear(),
+            label: 'this Week',
             backgroundColor: '#ed64a6',
             borderColor: '#ed64a6',
             data: [30, 78, 56, 34, 100, 45, 13],
@@ -17,7 +36,7 @@ export default function CardBarChart() {
             barThickness: 8
           },
           {
-            label: new Date().getFullYear() - 1,
+            label: 'last Week',
             fill: false,
             backgroundColor: '#4c51bf',
             borderColor: '#4c51bf',

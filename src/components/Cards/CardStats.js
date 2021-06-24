@@ -5,6 +5,7 @@ export default function CardStats({
   statSubtitle,
   statTitle,
   statArrow,
+  showStat,
   statPercent,
   statPercentColor,
   statDescripiron,
@@ -33,21 +34,28 @@ export default function CardStats({
               </div>
             </div>
           </div>
-          {/**<p className="text-sm text-blueGray-400 mt-4">
-            <span className={statPercentColor + ' mr-2'}>
-              <i
-                className={
-                  statArrow === 'up'
-                    ? 'fas fa-arrow-up'
-                    : statArrow === 'down'
-                    ? 'fas fa-arrow-down'
-                    : ''
-                }
-              ></i>{' '}
-              {statPercent}%
-            </span>
-            <span className="whitespace-nowrap">{statDescripiron}</span>
-          </p> */}
+
+          <p className="text-sm text-blueGray-400 mt-4">
+            {showStat ? (
+              <>
+                <span className={statPercentColor + ' mr-2'}>
+                  <i
+                    className={
+                      statArrow === 'up'
+                        ? 'fas fa-arrow-up'
+                        : statArrow === 'down'
+                        ? 'fas fa-arrow-down'
+                        : ''
+                    }
+                  ></i>{' '}
+                  {statPercent}%
+                </span>
+                <span className="whitespace-nowrap">{statDescripiron}</span>
+              </>
+            ) : (
+              ''
+            )}
+          </p>
         </div>
       </div>
     </>
@@ -56,8 +64,9 @@ export default function CardStats({
 
 CardStats.defaultProps = {
   statSubtitle: 'Traffic',
-  statTitle: '350,897',
+  statTitle: '',
   statArrow: 'up',
+  showStat: false,
   statPercent: '3.48',
   statPercentColor: 'text-emerald-500',
   statDescripiron: 'Since last month',
@@ -68,6 +77,7 @@ CardStats.defaultProps = {
 CardStats.propTypes = {
   statSubtitle: PropTypes.string,
   statTitle: PropTypes.string,
+  showStat: PropTypes.bool,
   statArrow: PropTypes.oneOf(['up', 'down']),
   statPercent: PropTypes.string,
   // can be any of the text color utilities

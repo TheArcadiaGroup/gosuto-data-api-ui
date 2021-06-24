@@ -38,7 +38,7 @@ export default function Auth() {
             <ProtectedRoute path="/auth/logout" exact component={Logout} />
             <Redirect from="/auth" to="/auth/login" />
           </Switch>
-          <FooterSmall absolute />
+          {/* <FooterSmall absolute /> */}
         </section>
       </main>
     </>

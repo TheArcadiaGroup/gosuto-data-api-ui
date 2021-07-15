@@ -2,7 +2,7 @@ import axios from 'axios'
 let API_URL = ''
 process.env.NODE_ENV === 'production'
   ? (API_URL = 'https://gos-back.herokuapp.com')
-  : (API_URL = 'http://localhost:3000')
+  : (API_URL = 'http://localhost:3001')
 
 axios.defaults.baseURL = `${API_URL}/api`
 axios.defaults.withCredentials = false

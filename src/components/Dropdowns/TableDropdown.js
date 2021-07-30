@@ -45,6 +45,15 @@ const NotificationDropdown = () => {
           Edit
         </a>
         <a
+          href="#toggle"
+          className={
+            'text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700'
+          }
+          onClick={(e) => e.preventDefault()}
+        >
+          toggle
+        </a>
+        <a
           href="#regenrateApiKey"
           className={
             'text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700'

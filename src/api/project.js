@@ -6,6 +6,7 @@ const editProject = (data, id) => http.put(`/project/${id}`, data)
 const getProjects = () => http.get(`/project`)
 const getProject = (id) => http.get(`/project/${id}`)
 const deleteProject = (id) => http.delete(`/project/${id}`)
+const toggleProject = (id) => http.patch(`/project/toggle/${id}`)
 
 export {
   postProject,
@@ -13,5 +14,6 @@ export {
   regenrateApiKey,
   deleteProject,
   getProject,
-  editProject
+  editProject,
+  toggleProject
 }

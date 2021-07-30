@@ -7,7 +7,7 @@ import { getProjects } from '../../api/project'
 
 import ProjectDropDown from 'components/Dropdowns/ProjectDropDown.js'
 
-export default function CardTable({ color }) {
+export default function CardProjects({ color }) {
   const { isAuth, user } = useSelector((state) => state.user)
 
   const [projects, setProjects] = useState([])
@@ -153,10 +153,10 @@ export default function CardTable({ color }) {
   )
 }
 
-CardTable.defaultProps = {
+CardProjects.defaultProps = {
   color: 'light'
 }
 
-CardTable.propTypes = {
+CardProjects.propTypes = {
   color: PropTypes.oneOf(['light', 'dark'])
 }

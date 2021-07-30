@@ -15,7 +15,7 @@ import Profile from 'views/admin/Profile'
 import EditPassword from 'views/admin/EditPassword'
 import Settings from 'views/admin/Settings.js'
 import Pricing from 'views/admin/Pricing.js'
-import Tables from 'views/admin/Tables'
+import Projects from 'views/admin/Projects'
 import Users from 'views/admin/Users'
 import banUser from 'views/admin/User/banUser'
 import Create from 'views/admin/Project/Create'
@@ -53,7 +53,7 @@ export default function Admin() {
                   exact
                   component={banUser}
                 />
-                <ProtectedRoute path="/dashboard/projects" exact component={Tables} />
+                <ProtectedRoute path="/dashboard/projects" exact component={Projects} />
                 <ProtectedRoute
                   path="/dashboard/project/create"
                   exact

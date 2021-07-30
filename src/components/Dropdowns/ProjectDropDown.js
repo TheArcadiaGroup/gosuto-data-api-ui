@@ -1,6 +1,7 @@
 import React from 'react'
 import { createPopper } from '@popperjs/core'
-import { regenrateApiKey, deleteProject } from '../../api/project'
+import addNotification from '../Notification'
+import { regenrateApiKey, deleteProject, toggleProject } from '../../api/project'
 import { Link } from 'react-router-dom'
 const ProjectDropDown = (props) => {
   const { project } = props
@@ -24,6 +25,18 @@ const ProjectDropDown = (props) => {
         window.location.reload()
       })
       .catch((err) => {
+        //window.location.reload()
+      })
+  }
+  const toggle = () => {
+    toggleProject(project._id)
+      .then(() => {
+        window.location.reload()
+        //addNotification('Project Toggled', 'Project Toggled')
+      })
+      .catch((error) => {
+        console.log(error.response.data)
+        addNotification('Project Toggled', error.response.data.message, 'danger')
         //window.location.reload()
       })
   }
@@ -77,6 +90,16 @@ const ProjectDropDown = (props) => {
           onClick={() => regenrate()}
         >
           Re Generate API key
+        </div>
+        <div
+          role="link"
+          className={
+            'text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700'
+          }
+          style={{ cursor: 'pointer' }}
+          onClick={() => toggle()}
+        >
+          {project.isActive ? 'Desactivate' : 'Activate'}
         </div>
         <div
           role="link"

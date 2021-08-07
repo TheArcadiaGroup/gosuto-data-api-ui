@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from 'react'
 import Portal from './Portal'
 import AppWrapper from 'components/Payment/CheckoutForm'
 
-const Modal = ({ onCancel, pack }) => {
+const Modal = ({ onCancel, pack, subscriptionData }) => {
   useEffect(() => {})
   return (
     <Portal>
@@ -28,7 +28,7 @@ const Modal = ({ onCancel, pack }) => {
             </div>
             {/*body */}
             <div className="relative p-6 flex-auto">
-              <AppWrapper pack={pack} />
+              <AppWrapper pack={pack} subscriptionData={subscriptionData} />
             </div>
             {/*footer */}
             <div className="flex items-center justify-end p-6 border-t border-solid border-gray-300 rounded-b">

@@ -1,18 +1,55 @@
 import React, { useEffect, useState } from 'react'
 
 import { getPacks, selectFreePlan } from 'api/pack'
+import { createSubscription, cancelSubscription, updateSubscription } from 'api/payment'
+
 import { useSelector } from 'react-redux'
 import Modal from 'components/Modal'
 // components
 
 export default function Pricing() {
   const [packs, setPacks] = useState([])
-  const [showModal, setShowModal] = useState({ state: false, pack: {} })
+  const [subscriptionData, setSubscriptionData] = useState(null)
+  const [showModal, setShowModal] = useState({
+    state: false,
+    pack: {},
+    subscriptionData: null
+  })
   //const [selected, setShowModal] = useState(false)
   const { isAuth, user } = useSelector((state) => state.user)
+  const generateSubscription = async (pack) => {
+    if (user.subscriptionId) {
+      updateSubscription(pack._id)
+        .then(() => {
+          window.location.reload()
+        })
+        .catch((err) => {
+          //window.location.reload()
+        })
+    } else {
+      const res = await createSubscription(pack._id)
 
+      const { subscriptionId, clientSecret } = res.data
+
+      setSubscriptionData({ subscriptionId: subscriptionId, clientSecret: clientSecret })
+      setShowModal({
+        state: true,
+        pack: pack,
+        subscriptionData: { subscriptionId: subscriptionId, clientSecret: clientSecret }
+      })
+    }
+  }
   function getFreePlan() {
     selectFreePlan()
+      .then(() => {
+        window.location.reload()
+      })
+      .catch((err) => {
+        //window.location.reload()
+      })
+  }
+  const handleCancelSubscription = () => {
+    cancelSubscription()
       .then(() => {
         window.location.reload()
       })
@@ -25,6 +62,7 @@ export default function Pricing() {
       const res = await getPacks()
       setPacks(res.data)
     }
+
     loadPacks()
   }, [setPacks])
   return (
@@ -80,9 +118,11 @@ export default function Pricing() {
                     style={{
                       backgroundImage: 'linear-gradient(180deg, #70aac7 0%, #0284c7 100%)'
                     }}
-                    disabled
+                    onClick={() => {
+                      handleCancelSubscription()
+                    }}
                   >
-                    Current PLAN
+                    {pack.free ? 'Current Plan' : 'unsubscribe'}
                   </button>
                 </article>
               )
@@ -134,10 +174,10 @@ export default function Pricing() {
                         backgroundImage:
                           'linear-gradient(180deg, #70aac7 0%, #0284c7 100%)'
                       }}
-                      onClick={() => setShowModal({ state: true, pack: pack })}
+                      onClick={() => generateSubscription(pack)}
                       className=" uppercase text-center text-sm mt-12 xl:px-24 px-12 sm:px-16 py-2 font-bold text-primary-very-light rounded-lg"
                     >
-                      SELECT PLAN
+                      {user.subscriptionId ? 'update to this plan' : 'select plan'}
                     </button>
                   )}
                 </article>
@@ -148,8 +188,12 @@ export default function Pricing() {
 
         {showModal.state ? (
           <Modal
-            onCancel={() => setShowModal({ state: false, pack: {} })}
+            onCancel={() => {
+              setShowModal({ state: false, pack: {}, subscriptionData: null })
+              window.location.reload()
+            }}
             pack={showModal.pack}
+            subscriptionData={showModal.subscriptionData}
           />
         ) : null}
       </div>

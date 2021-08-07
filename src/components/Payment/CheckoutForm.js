@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { loadStripe } from '@stripe/stripe-js'
+import { useSelector } from 'react-redux'
 import { CardElement, Elements, useElements, useStripe } from '@stripe/react-stripe-js'
-import { pay } from 'api/payment'
+import { confirmSubscription } from 'api/payment'
 import './style.css'
 
 const CARD_OPTIONS = {
@@ -60,13 +61,14 @@ const ErrorMessage = ({ children }) => (
   </div>
 )
 
-const CheckoutForm = ({ pack }) => {
+const CheckoutForm = ({ pack, clientSecret, subscriptionId }) => {
+  const { isAuth, user } = useSelector((state) => state.user)
+
   const stripe = useStripe()
   const elements = useElements()
   const [error, setError] = useState(null)
   const [cardComplete, setCardComplete] = useState(false)
   const [processing, setProcessing] = useState(false)
-  const [paymentMethod, setPaymentMethod] = useState(null)
   const [paymentState, setPaymentSate] = useState(null)
 
   const handleSubmit = async (event) => {
@@ -87,18 +89,24 @@ const CheckoutForm = ({ pack }) => {
       setProcessing(true)
     }
 
-    const payload = await stripe.createPaymentMethod({
-      type: 'card',
-      card: elements.getElement(CardElement)
+    const cardElement = elements.getElement(CardElement)
+
+    let { error2, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: cardElement,
+        billing_details: {
+          name: `${user.firstName} ${user.lastName}`
+        }
+      }
     })
 
     setProcessing(false)
 
-    if (payload.error) {
-      setError(payload.error)
+    if (error2) {
+      setError(error2)
     } else {
-      setPaymentMethod(payload.paymentMethod)
-      const res = pay(pack._id, payload.paymentMethod)
+      const data = { subscriptionId: subscriptionId, paymentIntent: paymentIntent }
+      confirmSubscription(pack._id, data)
         .then(() => {
           setPaymentSate(true)
         })
@@ -115,7 +123,7 @@ const CheckoutForm = ({ pack }) => {
       </div>
       <div className="ResultMessage">
         Thanks for trying Stripe Elements. No money was charged, but we generated a
-        PaymentMethod: {paymentMethod.id}
+        PaymentMethod: {subscriptionId}
       </div>
     </div>
   ) : paymentState === false ? (
@@ -136,7 +144,7 @@ const CheckoutForm = ({ pack }) => {
       </fieldset>
       {error && <ErrorMessage>{error.message}</ErrorMessage>}
       <SubmitButton processing={processing} error={error} disabled={!stripe}>
-        Pay ${pack.price}
+        Subscribe ${pack.price}
       </SubmitButton>
     </form>
   )
@@ -155,10 +163,16 @@ const ELEMENTS_OPTIONS = {
 const stripePromise = loadStripe('pk_test_fwLc8PkIhiaVTkH3WJTRTZEM')
 
 const AppWrapper = (props) => {
+  const { subscriptionData } = props
+  console.log(props)
   return (
     <div className="AppWrapper">
       <Elements stripe={stripePromise} options={ELEMENTS_OPTIONS}>
-        <CheckoutForm pack={props.pack} />
+        <CheckoutForm
+          pack={props.pack}
+          clientSecret={subscriptionData.clientSecret}
+          subscriptionId={subscriptionData.subscriptionId}
+        />
       </Elements>
     </div>
   )

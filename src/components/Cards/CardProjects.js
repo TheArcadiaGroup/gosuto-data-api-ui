@@ -7,7 +7,7 @@ import { getProjects } from '../../api/project'
 
 import ProjectDropDown from 'components/Dropdowns/ProjectDropDown.js'
 
-export default function CardTable({ color }) {
+export default function CardProjects({ color }) {
   const { isAuth, user } = useSelector((state) => state.user)
 
   const [projects, setProjects] = useState([])
@@ -134,7 +134,7 @@ export default function CardTable({ color }) {
                       {project.apiKey}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
-                      https://casper.gosuto.io/rpc/{project.apiKey}
+                      https://gos-back.herokuapp.com/rpc/{project.apiKey}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
                       {project.isActive ? 'Yes' : 'No'}
@@ -153,10 +153,10 @@ export default function CardTable({ color }) {
   )
 }
 
-CardTable.defaultProps = {
+CardProjects.defaultProps = {
   color: 'light'
 }
 
-CardTable.propTypes = {
+CardProjects.propTypes = {
   color: PropTypes.oneOf(['light', 'dark'])
 }

@@ -10,7 +10,7 @@ import { attemptGetUser } from 'store/thunks/user'
 export default function HeaderStats() {
   const { isAuth, user } = useSelector((state) => state.user)
   const [stat, setStat] = useState(0)
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   useEffect(() => {
     async function loadStat() {
       const res = await getStat()
@@ -34,7 +34,7 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="CURRENT PLAN"
-                  statTitle={(user.pack) && user.pack.name}
+                  statTitle={user.pack && user.pack.name}
                   statArrow="up"
                   statPercent="3.48"
                   statPercentColor="text-emerald-500"
@@ -45,8 +45,12 @@ export default function HeaderStats() {
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="Total Projects"
-                  statTitle={(user.pack && user.pack.nbRequests) && `${stat && stat.nbProjects} / ${user.pack.nbProjects}`}
+                  statSubtitle="Total Active Projects"
+                  statTitle={
+                    user.pack &&
+                    user.pack.nbRequests &&
+                    `${stat && stat.nbProjects} / ${user.pack.nbProjects}`
+                  }
                   statArrow="down"
                   statPercent="3.48"
                   statPercentColor="text-red-500"
@@ -58,7 +62,11 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="Requests Today"
-                  statTitle={(stat && user.pack.nbRequests) && `${stat.nbRequestsToday} / ${user.pack.nbRequests}`}
+                  statTitle={
+                    stat &&
+                    user.pack.nbRequests &&
+                    `${stat.nbRequestsToday} / ${user.pack.nbRequests}`
+                  }
                   statArrow="down"
                   statPercent="1.10"
                   statPercentColor="text-orange-500"
@@ -70,8 +78,7 @@ export default function HeaderStats() {
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
                   statSubtitle="Requests Yesterday"
-                  statTitle={(stat) && `${stat.nbRequestsYesterday
-                    } Requests Yesterday`}
+                  statTitle={stat && `${stat.nbRequestsYesterday} Requests Yesterday`}
                   showStat={true}
                   statArrow={stat && stat.perf > 0 ? 'up' : 'down'}
                   statPercent={`${stat && stat.perf && (stat.perf * 100).toFixed(2)}`}

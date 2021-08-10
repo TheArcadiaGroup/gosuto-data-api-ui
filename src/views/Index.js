@@ -191,7 +191,7 @@ export default function Index() {
                         CSS Components
                       </h6>
                       <p className="mb-4 text-blueGray-500">
-                        GOSUTU comes with a huge number of Fully Coded CSS
+                        GOSUTO comes with a huge number of Fully Coded CSS
                         components.
                       </p>
                     </div>
@@ -234,7 +234,7 @@ export default function Index() {
                       </h6>
                       <p className="mb-4 text-blueGray-500">
                         Built by developers for developers. You will love how
-                        easy is to to work with GOSUTU.
+                        easy is to to work with GOSUTO.
                       </p>
                     </div>
                   </div>

@@ -30,7 +30,6 @@ export default function Pricing() {
       const res = await createSubscription(pack._id)
 
       const { subscriptionId, clientSecret } = res.data
-
       setSubscriptionData({ subscriptionId: subscriptionId, clientSecret: clientSecret })
       setShowModal({
         state: true,
@@ -174,7 +173,7 @@ export default function Pricing() {
                         backgroundImage:
                           'linear-gradient(180deg, #70aac7 0%, #0284c7 100%)'
                       }}
-                      onClick={() => generateSubscription(pack)}
+                      onClick={async () => await generateSubscription(pack)}
                       className=" uppercase text-center text-sm mt-12 xl:px-24 px-12 sm:px-16 py-2 font-bold text-primary-very-light rounded-lg"
                     >
                       {user.subscriptionId ? 'update to this plan' : 'select plan'}

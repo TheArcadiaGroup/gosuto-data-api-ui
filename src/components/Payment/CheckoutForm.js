@@ -90,8 +90,7 @@ const CheckoutForm = ({ pack, clientSecret, subscriptionId }) => {
     }
 
     const cardElement = elements.getElement(CardElement)
-
-    let { error2, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+    let confirmCardPaymentResult = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
         card: cardElement,
         billing_details: {
@@ -99,13 +98,15 @@ const CheckoutForm = ({ pack, clientSecret, subscriptionId }) => {
         }
       }
     })
-
     setProcessing(false)
 
-    if (error2) {
-      setError(error2)
+    if (confirmCardPaymentResult.error) {
+      setError(confirmCardPaymentResult.error)
     } else {
-      const data = { subscriptionId: subscriptionId, paymentIntent: paymentIntent }
+      const data = {
+        subscriptionId: subscriptionId,
+        paymentIntent: confirmCardPaymentResult.paymentIntent
+      }
       confirmSubscription(pack._id, data)
         .then(() => {
           setPaymentSate(true)

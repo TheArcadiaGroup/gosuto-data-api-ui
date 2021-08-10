@@ -106,7 +106,7 @@ export default function Pricing() {
                       {pack.nbProjects} Projects
                     </li>
                     <li className="pt-3 pb-4 border-b border-gray-300">
-                      {pack.nbRequests} Requests
+                      {pack.nbRequests.toLocaleString()} Requests
                     </li>
                     <li className="pt-4 pb-4 border-b border-gray-300">
                       Send up to 3 GB
@@ -150,7 +150,7 @@ export default function Pricing() {
                       {pack.nbProjects} Projects
                     </li>
                     <li className="pt-3 pb-4 border-b border-gray-300">
-                      {pack.nbRequests} Requests
+                      {pack.nbRequests.toLocaleString()} Requests
                     </li>
                     <li className="pt-4 pb-4 border-b border-gray-300">
                       Send up to 3 GB
@@ -160,7 +160,8 @@ export default function Pricing() {
                     <button
                       style={{
                         backgroundImage:
-                          'linear-gradient(180deg, #70aac7 0%, #0284c7 100%)'
+                          'linear-gradient(180deg, #70aac7 0%, #0284c7 100%)',
+                        color: 'white'
                       }}
                       onClick={getFreePlan}
                       className=" uppercase text-center text-sm mt-12 xl:px-24 px-12 sm:px-16 py-2 font-bold text-primary-very-light rounded-lg"
@@ -171,7 +172,8 @@ export default function Pricing() {
                     <button
                       style={{
                         backgroundImage:
-                          'linear-gradient(180deg, #70aac7 0%, #0284c7 100%)'
+                          'linear-gradient(180deg, #70aac7 0%, #0284c7 100%)',
+                        color: 'white',
                       }}
                       onClick={async () => await generateSubscription(pack)}
                       className=" uppercase text-center text-sm mt-12 xl:px-24 px-12 sm:px-16 py-2 font-bold text-primary-very-light rounded-lg"

@@ -58,7 +58,7 @@ export default function Register() {
                     <div className="rounded-t mb-0 px-6 py-6"></div>
                     <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
                       <div className="text-blueGray-400 text-center mb-3 font-bold">
-                        <small>Sign up with credentials</small>
+                        <small>Sign up</small>
                       </div>
                       <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="relative w-full mb-3">

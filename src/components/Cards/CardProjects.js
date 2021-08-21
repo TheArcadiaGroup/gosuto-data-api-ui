@@ -134,7 +134,7 @@ export default function CardProjects({ color }) {
                       {project.apiKey}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
-                      https://gos-back.herokuapp.com/rpc/{project.apiKey}
+                      https://casper.gosuto.io/rpc/{project.apiKey}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
                       {project.isActive ? 'Yes' : 'No'}

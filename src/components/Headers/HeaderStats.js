@@ -15,9 +15,9 @@ export default function HeaderStats() {
     async function loadStat() {
       const res = await getStat()
       let yesterdayRequests =
-        res.data.nbRequestsYesterday === 0 ? 1 : res.data.nbRequestsYesterday
+        res.data.nbRequestsPastMonth === 0 ? 1 : res.data.nbRequestsPastMonth
       const perf =
-        (res.data.nbRequestsToday - res.data.nbRequestsYesterday) / yesterdayRequests
+        (res.data.nbRequestsThisMonth - res.data.nbRequestsPastMonth) / yesterdayRequests
       res.data.perf = perf
       setStat(res.data)
     }
@@ -61,11 +61,11 @@ export default function HeaderStats() {
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="Requests Today"
+                  statSubtitle="Requests This Month"
                   statTitle={
                     stat &&
                     user.pack.nbRequests &&
-                    `${stat.nbRequestsToday} / ${user.pack.nbRequests}`
+                    `${stat.nbRequestsThisMonth} / ${user.pack.nbRequests}`
                   }
                   statArrow="down"
                   statPercent="1.10"
@@ -77,15 +77,15 @@ export default function HeaderStats() {
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="Requests Yesterday"
-                  statTitle={stat && `${stat.nbRequestsYesterday} Requests Yesterday`}
+                  statSubtitle="Requests Past Month"
+                  statTitle={stat && `${stat.nbRequestsPastMonth} Requests`}
                   showStat={true}
                   statArrow={stat && stat.perf > 0 ? 'up' : 'down'}
                   statPercent={`${stat && stat.perf && (stat.perf * 100).toFixed(2)}`}
                   statPercentColor={
                     stat && stat.perf > 0 ? 'text-emerald-500' : 'text-red-500'
                   }
-                  statDescripiron="Since yesterday"
+                  statDescripiron="Since last month"
                   statIconName="fas fa-percent"
                   statIconColor="bg-lightBlue-500"
                 />
